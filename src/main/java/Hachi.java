@@ -13,10 +13,14 @@ public class Hachi {
 
         String line;
         Scanner in = new Scanner(System.in);
-        do {
+
+        while (true) {
             line = in.nextLine();
+            if (line.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            }
             System.out.println(line);
-        } while (!line.equals("bye"));
-        System.out.println("Bye. Hope to see you again soon!");
+        }
     }
 }
