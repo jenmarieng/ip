@@ -23,11 +23,9 @@ public class TaskManager {
         return taskIndex > 0 && taskIndex <= tasksCount;
     }
 
-    public void markTaskAsDone(String taskIndexString) {
-        taskIndexString = taskIndexString.replace("mark ", "");
-        int taskIndex = Integer.parseInt(taskIndexString);
+    public void markTaskAsDone(int taskIndex) {
         if (isValidTaskIndex(taskIndex)) {
-            if (!tasks[taskIndex - 1].isDone) {
+            if (!tasks[taskIndex - 1].isTaskDone()) {
                 tasks[taskIndex - 1].markAsDone();
                 System.out.println("Proud of you! I've marked this task as done: \n  " + tasks[taskIndex - 1].getTaskString());
             } else {
@@ -38,11 +36,9 @@ public class TaskManager {
         }
     }
 
-    public void markTaskAsNotDone(String taskIndexString) {
-        taskIndexString = taskIndexString.replace("unmark ", "");
-        int taskIndex = Integer.parseInt(taskIndexString);
+    public void markTaskAsNotDone(int taskIndex) {
         if (isValidTaskIndex(taskIndex)) {
-            if (tasks[taskIndex - 1].isDone) {
+            if (tasks[taskIndex - 1].isTaskDone()) {
                 tasks[taskIndex - 1].markAsNotDone();
                 System.out.println("Okay, I've marked this task as not done yet: \n  " + tasks[taskIndex - 1].getTaskString());
             } else {

@@ -24,9 +24,11 @@ public class Hachi {
             } else if (line.equals("list")) {
                 taskManager.listTasks();
             } else if (line.startsWith("mark")) {
-                taskManager.markTaskAsDone(line);
+                int taskIndex = Integer.parseInt(line.substring(5).trim());
+                taskManager.markTaskAsDone(taskIndex);
             } else if (line.startsWith("unmark")) {
-                taskManager.markTaskAsNotDone(line);
+                int taskIndex = Integer.parseInt(line.substring(7).trim());
+                taskManager.markTaskAsNotDone(taskIndex);
             } else {
                 taskManager.addTask(line);
             }

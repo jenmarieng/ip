@@ -15,6 +15,10 @@ public class Task {
         isDone = false;
     }
 
+    public boolean isTaskDone() {
+        return isDone;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "[X] " : "[ ] ");
     }
