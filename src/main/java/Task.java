@@ -23,7 +23,7 @@ public class Task {
         return (isDone ? "[X] " : "[ ] ");
     }
 
-    public String getTaskString() {
+    public String toString() {
         return getStatusIcon() + description;
     }
 }
