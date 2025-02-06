@@ -63,7 +63,7 @@ public class TaskManager {
         if (isValidTaskIndex(taskIndex)) {
             if (!tasks[taskIndex - 1].isTaskDone()) {
                 tasks[taskIndex - 1].markAsDone();
-                System.out.println("Proud of you! I've marked this task as done: \n  " + tasks[taskIndex - 1].toString());
+                System.out.println("Proud of you! I've marked this task as done:\n  " + tasks[taskIndex - 1].toString());
             } else {
                 System.out.println("You've already done this task!");
             }
@@ -76,7 +76,7 @@ public class TaskManager {
         if (isValidTaskIndex(taskIndex)) {
             if (tasks[taskIndex - 1].isTaskDone()) {
                 tasks[taskIndex - 1].markAsNotDone();
-                System.out.println("Okay, I've marked this task as not done yet: \n  " + tasks[taskIndex - 1].toString());
+                System.out.println("Okay, I've marked this task as not done yet:\n  " + tasks[taskIndex - 1].toString());
             } else {
                 System.out.println("The task is already marked as not done!");
             }
