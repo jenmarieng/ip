@@ -1,0 +1,10 @@
+todo answer CS2113 tutorial questions
+deadline weekly CS2113 quiz /by Monday 9pm
+list
+event CS2113 lecture /from Friday 4pm /to 6pm
+mark 3
+list
+unmark 3
+list
+mark 5
+event hotpot /from tomorrow
