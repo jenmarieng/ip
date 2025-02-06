@@ -5,43 +5,57 @@ public class TaskManager {
 
     public void addTask(String taskType, String taskInfo) {
         Task task;
-        String description;
 
         switch (taskType) {
         case "todo":
-            description = taskInfo.substring(5).trim();
-            task = new Todo(description);
+            task = addTodo(taskInfo);
             break;
         case "deadline":
-            int byIndex = taskInfo.indexOf("/by");
-            if (byIndex == -1) {
-                System.out.println("Invalid deadline format :(");
-                return;
-            }
-            description = taskInfo.substring(9, byIndex).trim();
-            String by = taskInfo.substring(byIndex + 4).trim();
-            task = new Deadline(description, by);
+            task = addDeadline(taskInfo);
             break;
         case "event":
-            int fromIndex = taskInfo.indexOf("/from");
-            int toIndex = taskInfo.indexOf("/to");
-            if (fromIndex == -1 || toIndex == -1) {
-                System.out.println("Invalid event format :(");
-                return;
-            }
-            description = taskInfo.substring(6, fromIndex).trim();
-            String from = taskInfo.substring(fromIndex + 6, toIndex).trim();
-            String to = taskInfo.substring(toIndex + 4).trim();
-            task = new Event(description, from, to);
+            task = addEvent(taskInfo);
             break;
         default:
             System.out.println("Woof? I don't understand. Try starting with todo, deadline or event!");
             return;
         }
 
+        if (task == null) {
+            return;
+        }
         tasks[tasksCount] = task;
         tasksCount++;
         System.out.println("Got it! I've added this task:\n  " + task + "\nNow you have " + tasksCount + " tasks in the list.");
+    }
+
+    public Task addTodo(String taskInfo) {
+        String description = taskInfo.substring(5).trim();
+        return new Todo(description);
+    }
+
+    public Task addDeadline(String taskInfo) {
+        int byIndex = taskInfo.indexOf("/by");
+        if (byIndex == -1) {
+            System.out.println("Invalid deadline format :(");
+            return null;
+        }
+        String description = taskInfo.substring(9, byIndex).trim();
+        String by = taskInfo.substring(byIndex + 4).trim();
+        return new Deadline(description, by);
+    }
+
+    public Task addEvent(String taskInfo) {
+        int fromIndex = taskInfo.indexOf("/from");
+        int toIndex = taskInfo.indexOf("/to");
+        if (fromIndex == -1 || toIndex == -1) {
+            System.out.println("Invalid event format :(");
+            return null;
+        }
+        String description = taskInfo.substring(6, fromIndex).trim();
+        String from = taskInfo.substring(fromIndex + 6, toIndex).trim();
+        String to = taskInfo.substring(toIndex + 4).trim();
+        return new Event(description, from, to);
     }
 
     public void listTasks() {
