@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Hachi {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws HachiException {
         System.out.println("""
                 Hello! I'm Hachi
                           __
@@ -20,26 +20,28 @@ public class Hachi {
             userInput = in.nextLine();
             String[] inputWords = userInput.split(" ");
             String commandType = inputWords[0];
-            int taskIndex;
 
-            switch (commandType) {
-            case "bye":
-                System.out.println("Bye. Hope to see you again soon!");
-                return;
-            case "list":
-                taskManager.listTasks();
-                break;
-            case "mark":
-                taskIndex = Integer.parseInt(userInput.substring(5).trim());
-                taskManager.markTaskAsDone(taskIndex);
-                break;
-            case "unmark":
-                taskIndex = Integer.parseInt(userInput.substring(7).trim());
-                taskManager.markTaskAsNotDone(taskIndex);
-                break;
-            default:
-                taskManager.addTask(commandType, userInput);
+            try {
+                switch (commandType) {
+                case "bye":
+                    System.out.println("Bye. Hope to see you again soon!");
+                    return;
+                case "list":
+                    taskManager.listTasks();
+                    break;
+                case "mark":
+                    taskManager.markTaskAsDone(userInput);
+                    break;
+                case "unmark":
+                    taskManager.markTaskAsNotDone(userInput);
+                    break;
+                default:
+                    taskManager.addTask(commandType, userInput);
+                }
+            } catch (HachiException e) {
+                System.out.println(e.getMessage());
             }
+
         }
     }
 }
