@@ -1,4 +1,7 @@
+package hachi.main;
+
 import java.util.Scanner;
+import hachi.task.TaskManager;
 
 public class Hachi {
     public static void main(String[] args) throws HachiException {

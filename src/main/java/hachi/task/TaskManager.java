@@ -1,3 +1,7 @@
+package hachi.task;
+
+import hachi.main.HachiException;
+
 public class TaskManager {
     public static final int MAX_NUMBER_OF_TASKS = 100;
     public static final int TODO_PREFIX_LENGTH = "todo ".length();
