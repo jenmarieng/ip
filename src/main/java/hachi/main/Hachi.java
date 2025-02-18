@@ -38,6 +38,9 @@ public class Hachi {
                 case "unmark":
                     taskManager.markTaskAsNotDone(userInput);
                     break;
+                case "delete":
+                    taskManager.deleteTask(userInput);
+                    break;
                 default:
                     taskManager.addTask(commandType, userInput);
                 }
