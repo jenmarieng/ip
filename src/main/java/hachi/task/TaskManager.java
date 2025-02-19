@@ -1,9 +1,10 @@
 package hachi.task;
 
 import hachi.main.HachiException;
+import java.util.ArrayList;
+import hachi.DataManager;
 
 public class TaskManager {
-    public static final int MAX_NUMBER_OF_TASKS = 100;
     public static final int TODO_PREFIX_LENGTH = "todo ".length();
     public static final int DEADLINE_PREFIX_LENGTH = "deadline ".length();
     public static final int EVENT_PREFIX_LENGTH = "event ".length();
@@ -13,8 +14,11 @@ public class TaskManager {
     public static final int MARK_PREFIX_LENGTH = "mark".length();
     public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
 
-    private Task[] tasks = new Task[MAX_NUMBER_OF_TASKS];
-    private int tasksCount = 0;
+    private ArrayList<Task> tasks;
+
+    public TaskManager() {
+        this.tasks = DataManager.loadTasksData();
+    }
 
     public void addTask(String taskType, String taskInfo) throws HachiException {
         Task task;
@@ -36,9 +40,9 @@ public class TaskManager {
         if (task == null) {
             return;
         }
-        tasks[tasksCount] = task;
-        tasksCount++;
-        System.out.println("Arf! I've added this task:\n  " + task + "\nNow you have " + tasksCount + " tasks in the list.");
+        tasks.add(task);
+        System.out.println("Arf! I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        DataManager.saveTasksData(tasks);
     }
 
     public Task addTodo(String taskInfo) throws HachiException {
@@ -88,12 +92,12 @@ public class TaskManager {
     }
 
     public void listTasks() {
-        if (tasksCount == 0) {
+        if (tasks.isEmpty()) {
             System.out.println("Woof? No tasks added yet.");
         } else {
             System.out.println("Woof! I've fetched the tasks in your list:");
-            for (int i = 0; i < tasksCount; i++) {
-                System.out.println((i + 1) + "." + tasks[i].toString());
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + "." + tasks.get(i).toString());
             }
         }
     }
@@ -101,12 +105,13 @@ public class TaskManager {
     public void markTaskAsDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(MARK_PREFIX_LENGTH).trim());
-            if (!tasks[taskIndex - 1].isTaskDone()) {
-                tasks[taskIndex - 1].markAsDone();
-                System.out.println("Proud of you! I've marked this task as done:\n  " + tasks[taskIndex - 1].toString());
+            if (!tasks.get(taskIndex - 1).isTaskDone()) {
+                tasks.get(taskIndex - 1).markAsDone();
+                System.out.println("Proud of you! I've marked this task as done:\n  " + tasks.get(taskIndex - 1).toString());
             } else {
                 System.out.println("You've already done this task!");
             }
+            DataManager.saveTasksData(tasks);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
@@ -117,12 +122,13 @@ public class TaskManager {
     public void markTaskAsNotDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(UNMARK_PREFIX_LENGTH).trim());
-            if (tasks[taskIndex - 1].isTaskDone()) {
-                tasks[taskIndex - 1].markAsNotDone();
-                System.out.println("Okay, I've marked this task as not done yet:\n  " + tasks[taskIndex - 1].toString());
+            if (tasks.get(taskIndex - 1).isTaskDone()) {
+                tasks.get(taskIndex - 1).markAsNotDone();
+                System.out.println("Okay, I've marked this task as not done yet:\n  " + tasks.get(taskIndex - 1).toString());
             } else {
                 System.out.println("The task is already marked as not done!");
             }
+            DataManager.saveTasksData(tasks);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {

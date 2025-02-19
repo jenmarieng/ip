@@ -1,0 +1,9 @@
+[T][ ] internship
+[D][X] 2113 ip (by: fri 4pm)
+[E][ ] cycling (from: fri night to: sat morning)
+[T][ ] sep mapping
+[E][X] church (from: sat 5pm to: 7pm)
+[D][ ] watch all lectures (by: sun morning)
+[E][ ] midterms (from: 2pm to: 4pm)
+[T][ ] test123 abc
+[D][X] leetcode (by: tonight)
