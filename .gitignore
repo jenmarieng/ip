@@ -3,6 +3,10 @@
 /out/
 /*.iml
 
+# Data files
+/data/
+/data/hachi.txt
+
 # Gradle build files
 /.gradle/
 /build/
