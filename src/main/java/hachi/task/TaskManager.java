@@ -1,8 +1,8 @@
 package hachi.task;
 
 import hachi.main.HachiException;
-
 import java.util.ArrayList;
+import hachi.DataManager;
 
 public class TaskManager {
     public static final int TODO_PREFIX_LENGTH = "todo ".length();
@@ -15,7 +15,11 @@ public class TaskManager {
     public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
     public static final int DELETE_PREFIX_LENGTH = "delete".length();
 
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+
+    public TaskManager() {
+        this.tasks = DataManager.loadTasksData();
+    }
 
     public void addTask(String taskType, String taskInfo) throws HachiException {
         Task task;
@@ -39,6 +43,7 @@ public class TaskManager {
         }
         tasks.add(task);
         System.out.println("Arf! I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        DataManager.saveTasksData(tasks);
     }
 
     public Task addTodo(String taskInfo) throws HachiException {
@@ -93,6 +98,7 @@ public class TaskManager {
             Task removedTask = tasks.get(taskIndex - 1);
             tasks.remove(taskIndex - 1);
             System.out.println("Ruff. Task deleted:\n  " + removedTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.");
+            DataManager.saveTasksData(tasks);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             System.out.println("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
@@ -117,6 +123,7 @@ public class TaskManager {
             if (!tasks.get(taskIndex - 1).isTaskDone()) {
                 tasks.get(taskIndex - 1).markAsDone();
                 System.out.println("Proud of you! I've marked this task as done:\n  " + tasks.get(taskIndex - 1).toString());
+                DataManager.saveTasksData(tasks);
             } else {
                 System.out.println("You've already done this task!");
             }
@@ -133,6 +140,7 @@ public class TaskManager {
             if (tasks.get(taskIndex - 1).isTaskDone()) {
                 tasks.get(taskIndex - 1).markAsNotDone();
                 System.out.println("Okay, I've marked this task as not done yet:\n  " + tasks.get(taskIndex - 1).toString());
+                DataManager.saveTasksData(tasks);
             } else {
                 System.out.println("The task is already marked as not done!");
             }
