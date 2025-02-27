@@ -1,53 +1,44 @@
 package hachi.main;
 
 import java.util.Scanner;
+
+import hachi.Ui;
+import hachi.DataManager;
+import hachi.command.Command;
 import hachi.task.TaskManager;
+import hachi.Parser;
 
 public class Hachi {
-    public static void main(String[] args) throws HachiException {
-        System.out.println("""
-                Hello! I'm Hachi
-                          __
-                 \\ ______/ U`-,    (WOOF!)
-                  (        /~~
-                 /_)^ --,/'
-                |_      |_
-                What can I do for you?""");
 
+    private final Ui ui;
+    private final TaskManager taskManager;
+    private final DataManager dataManager;
+
+    public Hachi(String filePath) {
+        this.ui = new Ui();
+        this.dataManager = new DataManager(filePath);
+        this.taskManager = new TaskManager(dataManager.loadTasksData());
+    }
+
+    public void run() {
+        ui.printHello();
         String userInput;
-        Scanner in = new Scanner(System.in);
 
-        TaskManager taskManager = new TaskManager();
-
-        while (true) {
-            userInput = in.nextLine();
-            String[] inputWords = userInput.split(" ");
-            String commandType = inputWords[0];
-
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                switch (commandType) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    return;
-                case "list":
-                    taskManager.listTasks();
-                    break;
-                case "mark":
-                    taskManager.markTaskAsDone(userInput);
-                    break;
-                case "unmark":
-                    taskManager.markTaskAsNotDone(userInput);
-                    break;
-                case "delete":
-                    taskManager.deleteTask(userInput);
-                    break;
-                default:
-                    taskManager.addTask(commandType, userInput);
-                }
+                userInput = ui.readUserInput();
+                Command command = Parser.parse(userInput);
+                command.execute(taskManager, ui, dataManager);
+                isExit = command.isExit();
             } catch (HachiException e) {
-                System.out.println(e.getMessage());
+                ui.printError(e);
             }
-
         }
+        ui.printBye();
+    }
+
+    public static void main(String[] args) {
+        new Hachi("./data/hachi.txt").run();
     }
 }

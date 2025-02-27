@@ -1,10 +1,14 @@
 package hachi.task;
 
 import hachi.main.HachiException;
+
 import java.util.ArrayList;
-import hachi.DataManager;
+
 
 public class TaskManager {
+    public static final String TODO = "todo";
+    public static final String DEADLINE = "deadline";
+    public static final String EVENT = "event";
     public static final int TODO_PREFIX_LENGTH = "todo ".length();
     public static final int DEADLINE_PREFIX_LENGTH = "deadline ".length();
     public static final int EVENT_PREFIX_LENGTH = "event ".length();
@@ -15,35 +19,38 @@ public class TaskManager {
     public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
     public static final int DELETE_PREFIX_LENGTH = "delete".length();
 
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
-    public TaskManager() {
-        this.tasks = DataManager.loadTasksData();
+    public TaskManager(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
-    public void addTask(String taskType, String taskInfo) throws HachiException {
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public String addTask(String taskType, String taskInfo) {
         Task task;
 
-        switch (taskType) {
-        case "todo":
-            task = addTodo(taskInfo);
-            break;
-        case "deadline":
-            task = addDeadline(taskInfo);
-            break;
-        case "event":
-            task = addEvent(taskInfo);
-            break;
-        default:
-            throw new HachiException("Woof? I don't understand. Try starting with todo, deadline or event!");
+        try {
+            switch (taskType) {
+            case TODO:
+                task = addTodo(taskInfo);
+                break;
+            case DEADLINE:
+                task = addDeadline(taskInfo);
+                break;
+            case EVENT:
+                task = addEvent(taskInfo);
+                break;
+            default:
+                return ("Woof? I don't understand. Try starting with todo, deadline or event!");
+            }
+            tasks.add(task);
+            return ("Arf! I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        } catch (HachiException e) {
+            return e.getMessage();
         }
-
-        if (task == null) {
-            return;
-        }
-        tasks.add(task);
-        System.out.println("Arf! I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
-        DataManager.saveTasksData(tasks);
     }
 
     public Task addTodo(String taskInfo) throws HachiException {
@@ -92,62 +99,60 @@ public class TaskManager {
         return new Event(description, from, to);
     }
 
-    public void deleteTask(String userInput) throws HachiException {
+    public String deleteTask(String userInput) {
         try {
-            int taskIndex = Integer.parseInt(userInput.substring(DELETE_PREFIX_LENGTH).trim());
-            Task removedTask = tasks.get(taskIndex - 1);
-            tasks.remove(taskIndex - 1);
-            System.out.println("Ruff. Task deleted:\n  " + removedTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.");
-            DataManager.saveTasksData(tasks);
+            int taskIndex = Integer.parseInt(userInput.substring(DELETE_PREFIX_LENGTH).trim()) - 1;
+            Task removedTask = tasks.get(taskIndex);
+            tasks.remove(taskIndex);
+            return ("Ruff. Task deleted:\n  " + removedTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.");
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            System.out.println("That's im-paw-sible... there is no such task...");
+            return ("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
-            System.out.println("It's im-paw-sible for that to be a number! It should be 'delete (task index)'.");
+            return ("It's im-paw-sible for that to be a number! It should be 'delete (task index)'.");
         }
     }
 
-    public void listTasks() {
+    public String listTasks() {
         if (tasks.isEmpty()) {
-            System.out.println("Woof? No tasks added yet.");
+            return ("Woof? No tasks added yet.");
         } else {
-            System.out.println("Woof! I've fetched the tasks in your list:");
+            StringBuilder output = new StringBuilder("Woof! I've fetched the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + "." + tasks.get(i).toString());
+                output.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
             }
+            return output.toString();
         }
     }
 
-    public void markTaskAsDone(String userInput) {
+    public String markTaskAsDone(String userInput) {
         try {
-            int taskIndex = Integer.parseInt(userInput.substring(MARK_PREFIX_LENGTH).trim());
-            if (!tasks.get(taskIndex - 1).isTaskDone()) {
-                tasks.get(taskIndex - 1).markAsDone();
-                System.out.println("Proud of you! I've marked this task as done:\n  " + tasks.get(taskIndex - 1).toString());
-                DataManager.saveTasksData(tasks);
+            int taskIndex = Integer.parseInt(userInput.substring(MARK_PREFIX_LENGTH).trim()) - 1;
+            if (!tasks.get(taskIndex).isTaskDone()) {
+                tasks.get(taskIndex).markAsDone();
+                return ("Proud of you! I've marked this task as done:\n  " + tasks.get(taskIndex).toString());
             } else {
-                System.out.println("You've already done this task!");
+                return ("You've already done this task!");
             }
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            System.out.println("That's im-paw-sible... there is no such task...");
+            return ("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
-            System.out.println("It's im-paw-sible for that to be a number! It should be 'mark (task index)'.");
+            return ("It's im-paw-sible for that to be a number! It should be 'mark (task index)'.");
         }
     }
 
-    public void markTaskAsNotDone(String userInput) {
+    public String markTaskAsNotDone(String userInput) {
         try {
-            int taskIndex = Integer.parseInt(userInput.substring(UNMARK_PREFIX_LENGTH).trim());
-            if (tasks.get(taskIndex - 1).isTaskDone()) {
-                tasks.get(taskIndex - 1).markAsNotDone();
-                System.out.println("Okay, I've marked this task as not done yet:\n  " + tasks.get(taskIndex - 1).toString());
-                DataManager.saveTasksData(tasks);
+            int taskIndex = Integer.parseInt(userInput.substring(UNMARK_PREFIX_LENGTH).trim()) - 1;
+            if (tasks.get(taskIndex).isTaskDone()) {
+                tasks.get(taskIndex).markAsNotDone();
+                return ("Okay, I've marked this task as not done yet:\n  " + tasks.get(taskIndex).toString());
             } else {
-                System.out.println("The task is already marked as not done!");
+                return ("The task is already marked as not done!");
             }
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            System.out.println("That's im-paw-sible... there is no such task...");
+            return ("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
-            System.out.println("It's im-paw-sible for that to be a number! It should be 'unmark (task index)'.");
+            return ("It's im-paw-sible for that to be a number! It should be 'unmark (task index)'.");
         }
     }
 }

@@ -4,6 +4,7 @@ import hachi.task.Deadline;
 import hachi.task.Event;
 import hachi.task.Task;
 import hachi.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +14,6 @@ import java.util.Scanner;
 
 public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
-    private static final String FILE_PATH = "./data/hachi.txt";
     public static final int TASK_TYPE_INDEX = 1;
     public static final int TASK_STATUS_INDEX = 4;
     public static final int TASK_INFO_INDEX = 7;
@@ -21,9 +21,32 @@ public class DataManager {
     public static final int FROM_PREFIX_INDEX = "(from: ".length();
     public static final int TO_PREFIX_INDEX = " to: ".length();
 
-    public static ArrayList<Task> loadTasksData() {
+    private final String filePath;
+
+    public DataManager(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void saveTasksData(ArrayList<Task> tasks) {
+        try {
+            File directory = new File(DIRECTORY_PATH);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            FileWriter fw = new FileWriter(filePath);
+            for (Task task : tasks) {
+                fw.write(task + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Woooof! Failed to save tasks: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Task> loadTasksData() {
         ArrayList<Task> tasks = new ArrayList<>();
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (!file.exists()) {
             return tasks;
         }
@@ -79,22 +102,5 @@ public class DataManager {
             task.markAsDone();
         }
         return task;
-    }
-
-    public static void saveTasksData(ArrayList<Task> tasks) {
-        try {
-            File directory = new File(DIRECTORY_PATH);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            FileWriter fw = new FileWriter(FILE_PATH);
-            for (Task task : tasks) {
-                fw.write(task + System.lineSeparator());
-            }
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Woooof! Failed to save tasks: " + e.getMessage());
-        }
     }
 }
