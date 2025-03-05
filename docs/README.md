@@ -4,10 +4,8 @@ Hachi is a **desktop program for managing to-do tasks, optimised for use via a C
 
 ## Features
 > [!NOTE]
-
 > Words in UPPER_CASE are the parameters to be supplied by the user.
 > e.g. in `todo TASK_NAME`, `TASK_NAME` is a parameter which can be used as `todo midterms revision`.
-
 > Extraneous parameters for commands that do not take in parameters (such as list and bye) will be ignored.
 > e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
