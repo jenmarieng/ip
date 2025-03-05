@@ -4,6 +4,7 @@ import hachi.command.AddCommand;
 import hachi.command.ByeCommand;
 import hachi.command.Command;
 import hachi.command.DeleteCommand;
+import hachi.command.FindCommand;
 import hachi.command.ListCommand;
 import hachi.command.MarkCommand;
 import hachi.command.UnmarkCommand;
@@ -22,6 +23,7 @@ public class Parser {
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
+    private static final String FIND = "find";
 
     /**
      * Parses user input and returns the corresponding command.
@@ -47,8 +49,10 @@ public class Parser {
                 return new DeleteCommand(userInput);
             case TODO, DEADLINE, EVENT:
                 return new AddCommand(commandType, userInput);
+            case FIND:
+                return new FindCommand(userInput);
             default:
-                throw new HachiException("Woof? I don't understand. Try starting with list, todo, deadline, event, delete, mark or unmark!");
+                throw new HachiException("Woof? I don't understand. Try starting with list, find, todo, deadline, event, delete, mark or unmark!");
             }
         } catch (HachiException e) {
             throw new HachiException(e.getMessage());

@@ -1,7 +1,5 @@
 package hachi.main;
 
-import java.util.Scanner;
-
 import hachi.Ui;
 import hachi.DataManager;
 import hachi.command.Command;

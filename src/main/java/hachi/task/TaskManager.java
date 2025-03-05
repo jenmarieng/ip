@@ -20,6 +20,7 @@ public class TaskManager {
     public static final int MARK_PREFIX_LENGTH = "mark".length();
     public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
     public static final int DELETE_PREFIX_LENGTH = "delete".length();
+    public static final int FIND_PREFIX_LENGTH = "find ".length();
 
     private final ArrayList<Task> tasks;
 
@@ -201,6 +202,34 @@ public class TaskManager {
             return ("That's im-paw-sible... there is no such task...");
         } catch (NumberFormatException e) {
             return ("It's im-paw-sible for that to be a number! It should be 'unmark (task index)'.");
+        }
+    }
+
+    public String findTask(String userInput) {
+        try {
+            String keyword = userInput.substring(FIND_PREFIX_LENGTH).trim();
+            if (keyword.isEmpty()) {
+                return ("Ruff? So, what do you want me to fetch?");
+            }
+            ArrayList<Task> matchedTasks = new ArrayList<>();
+            for (Task task : tasks) {
+                String taskDescription = task.getDescription();
+                if (taskDescription.contains(keyword)) {
+                    matchedTasks.add(task);
+                }
+            }
+
+            if (matchedTasks.isEmpty()) {
+                return ("Woof? No such tasks.");
+            } else {
+                StringBuilder output = new StringBuilder("Woof! I've fetched the tasks that match:\n");
+                for (int i = 0; i < matchedTasks.size(); i++) {
+                    output.append(i + 1).append(". ").append(matchedTasks.get(i).toString()).append("\n");
+                }
+                return output.toString();
+            }
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            return ("Arf... Try again with 'find (keyword)', eg. 'find book'.");
         }
     }
 }
