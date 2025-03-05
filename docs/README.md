@@ -68,7 +68,7 @@ Woof! I've fetched the tasks in your list:
 3. [E][ ] formal dinner (from: 6pm to: 9pm)
 ```
 
-### Delete task : `delete`
+### Deleting task : `delete`
 
 Deletes a task.
 
@@ -83,7 +83,7 @@ Ruff. Task deleted:
 Now you have 2 tasks in the list.
 ```
 
-### Mark task : `mark`
+### Marking task : `mark`
 
 Marks a task as done.
 
@@ -97,7 +97,7 @@ Proud of you! I've marked this task as done:
   [D][X] watch lecture (by: tmr)
 ```
 
-### Unmark task : `unmark`
+### Unmarking task : `unmark`
 
 Unmarks a task as done.
 
@@ -111,7 +111,7 @@ Okay, I've marked this task as not done yet:
   [D][ ] watch lecture (by: tmr)
 ```
 
-### Find task : `find`
+### Finding task : `find`
 
 Finds tasks that contain the keyword in their task description.
 
