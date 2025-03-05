@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles saving and loading of task data.
+ */
 public class DataManager {
     private static final String DIRECTORY_PATH = "./data";
     public static final int TASK_TYPE_INDEX = 1;
@@ -23,10 +26,18 @@ public class DataManager {
 
     private final String filePath;
 
+    /**
+     * Constructs a DataManager with the specified file path.
+     * @param filePath The file path where task data is stored.
+     */
     public DataManager(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves tasks to a file.
+     * @param tasks The list of tasks to be saved.
+     */
     public void saveTasksData(ArrayList<Task> tasks) {
         try {
             File directory = new File(DIRECTORY_PATH);
@@ -44,6 +55,10 @@ public class DataManager {
         }
     }
 
+    /**
+     * Loads tasks from a file.
+     * @return The list of loaded tasks.
+     */
     public ArrayList<Task> loadTasksData() {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);

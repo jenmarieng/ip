@@ -9,6 +9,9 @@ import hachi.command.MarkCommand;
 import hachi.command.UnmarkCommand;
 import hachi.main.HachiException;
 
+/**
+ * Parses user input and returns the corresponding command.
+ */
 public class Parser {
 
     public static final String BYE = "bye";
@@ -20,6 +23,12 @@ public class Parser {
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
 
+    /**
+     * Parses user input and returns the corresponding command.
+     * @param userInput The input string.
+     * @return The corresponding command object.
+     * @throws HachiException If the input is invalid.
+     */
     public static Command parse(String userInput) throws HachiException {
         String[] fullInput = userInput.split(" ");
         String commandType = fullInput[0].toLowerCase();
