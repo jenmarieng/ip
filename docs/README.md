@@ -3,13 +3,13 @@
 Hachi is a **desktop program for managing to-do tasks, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). These tasks can be categorised into 3 types: todo, deadline (includes a deadline date), event (includes an event start date and end date).
 
 ## Features
-[!NOTE] **Notes about the command format:**
+> [!NOTE]
 
-Words in UPPER_CASE are the parameters to be supplied by the user.
-e.g. in `todo TASK_NAME`, `TASK_NAME` is a parameter which can be used as `todo midterms revision`.
+> Words in UPPER_CASE are the parameters to be supplied by the user.
+> e.g. in `todo TASK_NAME`, `TASK_NAME` is a parameter which can be used as `todo midterms revision`.
 
-Extraneous parameters for commands that do not take in parameters (such as list and bye) will be ignored.
-e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+> Extraneous parameters for commands that do not take in parameters (such as list and bye) will be ignored.
+> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 ### Adding todo : `todo`
 
