@@ -4,7 +4,9 @@ import hachi.main.HachiException;
 
 import java.util.ArrayList;
 
-
+/**
+ * Manages tasks by adding, deleting, listing, searching, and updating their status.
+ */
 public class TaskManager {
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
@@ -30,6 +32,12 @@ public class TaskManager {
         return tasks;
     }
 
+    /**
+     * Adds a task based on the task type and description provided.
+     * @param taskType The type of task (todo, deadline, event).
+     * @param taskInfo The task details.
+     * @return Confirmation message that a task has been added or an error has occurred.
+     */
     public String addTask(String taskType, String taskInfo) {
         Task task;
 
@@ -54,6 +62,13 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Adds a Todo task based on user input.
+     *
+     * @param taskInfo The full command input from the user.
+     * @return A Todo task with the specified description.
+     * @throws HachiException If the description is missing.
+     */
     public Task addTodo(String taskInfo) throws HachiException {
         if (taskInfo.length() <= TODO_PREFIX_LENGTH) {
             throw new HachiException("Woof? So, what do you want to do?");
@@ -63,6 +78,13 @@ public class TaskManager {
         return new Todo(description);
     }
 
+    /**
+     * Adds a Deadline task based on user input.
+     *
+     * @param taskInfo The full command input from the user.
+     * @return A Deadline task with the specified description and due date.
+     * @throws HachiException If the description or due date is missing or incorrectly formatted.
+     */
     public Task addDeadline(String taskInfo) throws HachiException {
         if (taskInfo.length() <= DEADLINE_PREFIX_LENGTH) {
             throw new HachiException("Woof? So, what do you want to do?");
@@ -80,6 +102,13 @@ public class TaskManager {
         return new Deadline(description, by);
     }
 
+    /**
+     * Adds an Event task based on user input.
+     *
+     * @param taskInfo The full command input from the user.
+     * @return An Event task with the specified description, start time, and end time.
+     * @throws HachiException If any required details are missing or incorrectly formatted.
+     */
     public Task addEvent(String taskInfo) throws HachiException {
         if (taskInfo.length() <= EVENT_PREFIX_LENGTH) {
             throw new HachiException("Woof? So, what do you want to do?");
@@ -100,6 +129,11 @@ public class TaskManager {
         return new Event(description, from, to);
     }
 
+    /**
+     * Deletes a task from task list.
+     * @param userInput The index of the task to delete.
+     * @return Confirmation message that a task has been deleted or an error has occurred.
+     */
     public String deleteTask(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(DELETE_PREFIX_LENGTH).trim()) - 1;
@@ -113,6 +147,10 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Lists all tasks.
+     * @return A formatted string of all tasks.
+     */
     public String listTasks() {
         if (tasks.isEmpty()) {
             return ("Woof? No tasks added yet.");
@@ -125,6 +163,11 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Marks a task as done.
+     * @param userInput The index of the task to mark as done.
+     * @return Confirmation message that the task has been marked done or an error has occurred.
+     */
     public String markTaskAsDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(MARK_PREFIX_LENGTH).trim()) - 1;
@@ -141,6 +184,11 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Marks a task as not done.
+     * @param userInput The index of the task to mark as not done.
+     * @return Confirmation message that the task has been marked not done or an error has occurred.
+     */
     public String markTaskAsNotDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(UNMARK_PREFIX_LENGTH).trim()) - 1;
