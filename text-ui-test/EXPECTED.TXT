@@ -5,29 +5,64 @@ Hello! I'm Hachi
  /_)^ --,/'
 |_      |_
 What can I do for you?
+Woof! Here are the tasks in your list:
+1.[D][ ] test (by: tmr)
+2.[T][ ] watch lecture
+
 Got it! I've added this task:
   [T][ ] answer CS2113 tutorial questions
-Now you have 1 tasks in the list.
+Now you have 3 tasks in the list.
 Got it! I've added this task:
   [D][ ] weekly CS2113 quiz (by: Monday 9pm)
-Now you have 2 tasks in the list.
+Now you have 4 tasks in the list.
 Woof! Here are the tasks in your list:
-1.[T][ ] answer CS2113 tutorial questions
-2.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+1.[D][ ] test (by: tmr)
+2.[T][ ] watch lecture
+3.[T][ ] answer CS2113 tutorial questions
+4.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+
 Got it! I've added this task:
   [E][ ] CS2113 lecture (from: Friday 4pm to: 6pm)
-Now you have 3 tasks in the list.
+Now you have 5 tasks in the list.
 Proud of you! I've marked this task as done:
   [E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
 Woof! Here are the tasks in your list:
-1.[T][ ] answer CS2113 tutorial questions
-2.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+1.[D][ ] test (by: tmr)
+2.[T][ ] watch lecture
+3.[T][ ] answer CS2113 tutorial questions
+4.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
 3.[E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
+
 Okay, I've marked this task as not done yet:
   [E][ ] CS2113 lecture (from: Friday 4pm to: 6pm)
 Woof! Here are the tasks in your list:
-1.[T][ ] answer CS2113 tutorial questions
-2.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
-3.[E][ ] CS2113 lecture (from: Friday 4pm to: 6pm)
+1.[D][ ] test (by: tmr)
+2.[T][ ] watch lecture
+3.[T][ ] answer CS2113 tutorial questions
+4.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+5.[E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
+
 Woof... there is no such task...
 Invalid event format :(
+Ruff. Task deleted:
+  [T][ ] answer CS2113 tutorial questions
+Now you have 4 tasks in the list.
+Woof! Here are the tasks in your list:
+1.[D][ ] test (by: tmr)
+2.[T][ ] watch lecture
+3.[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+4.[E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
+
+That's im-paw-sible... there is no such task...
+Woof... there is no such task...
+Woof! I've fetched the tasks that match:
+1.[T][ ] watch lecture
+2.[E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
+Woof? No such tasks.
+It's im-paw-sible for that to be a number! It should be 'delete (task index)'.
+Woof? I don't understand. Try starting with list, find, todo, deadline, event, delete, mark or unmark!
+Woof? I don't understand. Try starting with list, find, todo, deadline, event, delete, mark or unmark!
+Woof woof... Deadline needs a description and date.
+Ruff! Invalid deadline format :( it should be 'deadline (task name) /by (deadline)'.
+Woof? So, what do you want to do?
+Woof? So, what do you want to do?
