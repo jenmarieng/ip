@@ -171,9 +171,10 @@ public class TaskManager {
     public String markTaskAsDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(MARK_PREFIX_LENGTH).trim()) - 1;
-            if (!tasks.get(taskIndex).isTaskDone()) {
-                tasks.get(taskIndex).markAsDone();
-                return ("Proud of you! I've marked this task as done:\n  " + tasks.get(taskIndex).toString());
+            Task task = tasks.get(taskIndex);
+            if (!task.isTaskDone()) {
+                task.markAsDone();
+                return ("Proud of you! I've marked this task as done:\n  " + task.toString());
             } else {
                 return ("You've already done this task!");
             }
@@ -192,9 +193,10 @@ public class TaskManager {
     public String markTaskAsNotDone(String userInput) {
         try {
             int taskIndex = Integer.parseInt(userInput.substring(UNMARK_PREFIX_LENGTH).trim()) - 1;
-            if (tasks.get(taskIndex).isTaskDone()) {
-                tasks.get(taskIndex).markAsNotDone();
-                return ("Okay, I've marked this task as not done yet:\n  " + tasks.get(taskIndex).toString());
+            Task task = tasks.get(taskIndex);
+            if (task.isTaskDone()) {
+                task.markAsNotDone();
+                return ("Okay, I've marked this task as not done yet:\n  " + task.toString());
             } else {
                 return ("The task is already marked as not done!");
             }

@@ -23,7 +23,7 @@ public class Parser {
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
-    private static final String FIND = "find";
+    public static final String FIND = "find";
 
     /**
      * Parses user input and returns the corresponding command.
