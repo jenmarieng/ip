@@ -3,9 +3,9 @@ todo answer CS2113 tutorial questions
 deadline weekly CS2113 quiz /by Monday 9pm
 list
 event CS2113 lecture /from Friday 4pm /to 6pm
-mark 5
+mark 3
 list
-unmark 5
+unmark 3
 list
 mark 7
 event hotpot /from tomorrow
@@ -13,6 +13,9 @@ delete 3
 list
 delete 10
 unmark 9
+todo watch lecture
+event CS2113 lecture /from Friday 4pm /to 6pm
+mark 4
 find lecture
 find hi
 delete

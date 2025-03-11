@@ -1,0 +1,4 @@
+[T][ ] answer CS2113 tutorial questions
+[D][ ] weekly CS2113 quiz (by: Monday 9pm)
+[T][ ] watch lecture
+[E][X] CS2113 lecture (from: Friday 4pm to: 6pm)
