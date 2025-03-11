@@ -1,10 +1,7 @@
-package hachi.main;
+package hachi;
 
-import hachi.Ui;
-import hachi.DataManager;
 import hachi.command.Command;
 import hachi.task.TaskManager;
-import hachi.Parser;
 
 /**
  * The main class for the Hachi program, responsible for initialising

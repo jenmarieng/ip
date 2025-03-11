@@ -1,6 +1,6 @@
 package hachi.task;
 
-import hachi.main.HachiException;
+import hachi.HachiException;
 
 import java.util.ArrayList;
 

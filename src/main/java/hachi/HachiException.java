@@ -1,4 +1,4 @@
-package hachi.main;
+package hachi;
 
 public class HachiException extends Exception {
     public HachiException(String message) {

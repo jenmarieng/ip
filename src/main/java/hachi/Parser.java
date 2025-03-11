@@ -8,7 +8,6 @@ import hachi.command.FindCommand;
 import hachi.command.ListCommand;
 import hachi.command.MarkCommand;
 import hachi.command.UnmarkCommand;
-import hachi.main.HachiException;
 
 /**
  * Parses user input and returns the corresponding command.
