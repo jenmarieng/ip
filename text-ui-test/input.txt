@@ -25,3 +25,4 @@ deadline quiz /by
 deadline quiz
 event
 todo
+bye
