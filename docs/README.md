@@ -2,8 +2,21 @@
 
 Hachi is a **desktop program for managing to-do tasks, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). These tasks can be categorised into 3 types: todo, deadline (includes a deadline date), event (includes an event start date and end date).
 
+## Quick Start
+1. Ensure you have Java 17 installed in your computer.
+
+2. Download the latest ip.jar file.
+
+3. Copy the jar file to the folder you want to use as the home folder.
+
+4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar ip.jar` command to run the application. A hello message should be printed.
+
+5. Type the command in the command box and press Enter to execute it.
+
+6. Refer to the Features below for details of each command.
+
 ## Features
-> [!NOTE]
+> **Notes about the command format:**
 > Words in UPPER_CASE are the parameters to be supplied by the user.
 > e.g. in `todo TASK_NAME`, `TASK_NAME` is a parameter which can be used as `todo midterms revision`.
 > Extraneous parameters for commands that do not take in parameters (such as list and bye) will be ignored.
