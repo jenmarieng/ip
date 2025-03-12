@@ -75,6 +75,9 @@ public class TaskManager {
         }
 
         String description = taskInfo.substring(TODO_PREFIX_LENGTH).trim();
+        if (description.isEmpty()) {
+            throw new HachiException("Woof woof... Todo needs a task description.");
+        }
         return new Todo(description);
     }
 
