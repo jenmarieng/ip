@@ -142,7 +142,7 @@ Woof! I've fetched the tasks that match:
 
 Exits the program
 
-Format: `exit`
+Format: `bye`
 
 A goodbye message will be printed.
 ```
