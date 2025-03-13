@@ -8,22 +8,22 @@ import java.util.ArrayList;
  * Manages tasks by adding, deleting, listing, searching, and updating their status.
  */
 public class TaskManager {
-    public static final String TODO = "todo";
-    public static final String DEADLINE = "deadline";
-    public static final String EVENT = "event";
-    public static final int TODO_PREFIX_LENGTH = "todo ".length();
-    public static final int DEADLINE_PREFIX_LENGTH = "deadline ".length();
-    public static final int EVENT_PREFIX_LENGTH = "event ".length();
-    public static final String BY_PREFIX = "/by ";
-    public static final String FROM_PREFIX = "/from ";
-    public static final String TO_PREFIX = "/to ";
-    public static final int BY_PREFIX_LENGTH = "/by ".length();
-    public static final int FROM_PREFIX_LENGTH = "/from ".length();
-    public static final int TO_PREFIX_LENGTH = "/to ".length();
-    public static final int MARK_PREFIX_LENGTH = "mark".length();
-    public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
-    public static final int DELETE_PREFIX_LENGTH = "delete".length();
-    public static final int FIND_PREFIX_LENGTH = "find ".length();
+    private static final String TODO = "todo";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
+    private static final int TODO_PREFIX_LENGTH = "todo ".length();
+    private static final int DEADLINE_PREFIX_LENGTH = "deadline ".length();
+    private static final int EVENT_PREFIX_LENGTH = "event ".length();
+    private static final String BY_PREFIX = "/by ";
+    private static final String FROM_PREFIX = "/from ";
+    private static final String TO_PREFIX = "/to ";
+    private static final int BY_PREFIX_LENGTH = "/by ".length();
+    private static final int FROM_PREFIX_LENGTH = "/from ".length();
+    private static final int TO_PREFIX_LENGTH = "/to ".length();
+    private static final int MARK_PREFIX_LENGTH = "mark".length();
+    private static final int UNMARK_PREFIX_LENGTH = "unmark".length();
+    private static final int DELETE_PREFIX_LENGTH = "delete".length();
+    private static final int FIND_PREFIX_LENGTH = "find ".length();
 
     private final ArrayList<Task> tasks;
 
@@ -37,6 +37,7 @@ public class TaskManager {
 
     /**
      * Adds a task based on the task type and description provided.
+     *
      * @param taskType The type of task (todo, deadline, event).
      * @param taskInfo The task details.
      * @return Confirmation message that a task has been added or an error has occurred.
@@ -137,6 +138,7 @@ public class TaskManager {
 
     /**
      * Deletes a task from task list.
+     *
      * @param userInput The index of the task to delete.
      * @return Confirmation message that a task has been deleted or an error has occurred.
      */
@@ -155,6 +157,7 @@ public class TaskManager {
 
     /**
      * Lists all tasks.
+     *
      * @return A formatted string of all tasks.
      */
     public String listTasks() {
@@ -171,6 +174,7 @@ public class TaskManager {
 
     /**
      * Marks a task as done.
+     *
      * @param userInput The index of the task to mark as done.
      * @return Confirmation message that the task has been marked done or an error has occurred.
      */
@@ -193,6 +197,7 @@ public class TaskManager {
 
     /**
      * Marks a task as not done.
+     *
      * @param userInput The index of the task to mark as not done.
      * @return Confirmation message that the task has been marked not done or an error has occurred.
      */

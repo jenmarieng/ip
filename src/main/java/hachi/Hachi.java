@@ -9,6 +9,7 @@ import hachi.task.TaskManager;
  */
 public class Hachi {
 
+    private static final String FILE_PATH = "./data/hachi.txt";
     private final Ui ui;
     private final TaskManager taskManager;
     private final DataManager dataManager;
@@ -52,6 +53,6 @@ public class Hachi {
      * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
-        new Hachi("./data/hachi.txt").run();
+        new Hachi(FILE_PATH).run();
     }
 }

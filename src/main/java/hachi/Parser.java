@@ -14,18 +14,19 @@ import hachi.command.UnmarkCommand;
  */
 public class Parser {
 
-    public static final String BYE = "bye";
-    public static final String LIST = "list";
-    public static final String MARK = "mark";
-    public static final String UNMARK = "unmark";
-    public static final String DELETE = "delete";
-    public static final String TODO = "todo";
-    public static final String DEADLINE = "deadline";
-    public static final String EVENT = "event";
-    public static final String FIND = "find";
+    private static final String BYE = "bye";
+    private static final String LIST = "list";
+    private static final String MARK = "mark";
+    private static final String UNMARK = "unmark";
+    private static final String DELETE = "delete";
+    private static final String TODO = "todo";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
+    private static final String FIND = "find";
 
     /**
      * Parses user input and returns the corresponding command.
+     *
      * @param userInput The input string.
      * @return The corresponding command object.
      * @throws HachiException If the input is invalid.

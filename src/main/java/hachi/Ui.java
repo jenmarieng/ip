@@ -35,6 +35,7 @@ public class Ui {
 
     /**
      * Prints an error message.
+     *
      * @param e The exception containing the error message.
      */
     public void printError(Exception e) {
@@ -43,6 +44,7 @@ public class Ui {
 
     /**
      * Reads user input from the console.
+     *
      * @return The user input string.
      */
     public String readUserInput() {
@@ -51,6 +53,7 @@ public class Ui {
 
     /**
      * Prints command output to the console.
+     *
      * @param output The output to display.
      */
     public void printCommandOutput(String output) {
