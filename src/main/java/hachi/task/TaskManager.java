@@ -14,9 +14,12 @@ public class TaskManager {
     public static final int TODO_PREFIX_LENGTH = "todo ".length();
     public static final int DEADLINE_PREFIX_LENGTH = "deadline ".length();
     public static final int EVENT_PREFIX_LENGTH = "event ".length();
-    public static final int BY_PREFIX_LENGTH = "/by".length();
-    public static final int FROM_PREFIX_LENGTH = "/from".length();
-    public static final int TO_PREFIX_LENGTH = "/to".length();
+    public static final String BY_PREFIX = "/by ";
+    public static final String FROM_PREFIX = "/from ";
+    public static final String TO_PREFIX = "/to ";
+    public static final int BY_PREFIX_LENGTH = "/by ".length();
+    public static final int FROM_PREFIX_LENGTH = "/from ".length();
+    public static final int TO_PREFIX_LENGTH = "/to ".length();
     public static final int MARK_PREFIX_LENGTH = "mark".length();
     public static final int UNMARK_PREFIX_LENGTH = "unmark".length();
     public static final int DELETE_PREFIX_LENGTH = "delete".length();
@@ -93,7 +96,7 @@ public class TaskManager {
             throw new HachiException("Woof? So, what do you want to do?");
         }
 
-        int byIndex = taskInfo.indexOf("/by");
+        int byIndex = taskInfo.indexOf(BY_PREFIX);
         if (byIndex == -1 || byIndex == taskInfo.length() - BY_PREFIX_LENGTH) {
             throw new HachiException("Ruff! Invalid deadline format :( it should be 'deadline (task name) /by (deadline)'.");
         }
@@ -117,8 +120,8 @@ public class TaskManager {
             throw new HachiException("Woof? So, what do you want to do?");
         }
 
-        int fromIndex = taskInfo.indexOf("/from");
-        int toIndex = taskInfo.indexOf("/to");
+        int fromIndex = taskInfo.indexOf(FROM_PREFIX);
+        int toIndex = taskInfo.indexOf(TO_PREFIX);
         if (fromIndex == -1 || toIndex == -1 || fromIndex == taskInfo.length() - FROM_PREFIX_LENGTH
                 || toIndex == taskInfo.length() - TO_PREFIX_LENGTH) {
             throw new HachiException("Ruff! Invalid event format :( it should be 'event (task name) /from (start date) /to (end date)'.");
